@@ -8,10 +8,22 @@ const rPP = 50;
 class CharactersController {
 
     async index(req, res) {
-        try {
-            const results = await apiMarvel.get(`${apiKey}`);
+        const { pagina } = req.query;
 
-            return res.json(results.data);
+        let offset = 0;
+
+        if (pagina && pagina > 1) {
+            offset = ((pagina - 1) * rPP) + 1;
+        }
+
+        try {
+            await apiMarvel.get(`${apiKey}&limit=${rPP}&offset=${offset}`).then(response => {
+
+                console.log("primeiro resultado", response.data.data.total);
+
+
+                return res.json(response.data);
+            });
         } catch (error) {
             return res.status(error.status || 400).json(error);
         }
@@ -22,7 +34,7 @@ class CharactersController {
             console.log('entrou');
             const { id } = req.params;
             const { data } = await apiMarvel.get(`
-                        $ { apiKey } & id = $ { id }
+                        ${apiKey}&id=${id}
                         `);
 
             return res.json(data);
