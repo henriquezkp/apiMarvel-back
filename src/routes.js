@@ -10,8 +10,8 @@ routes.get('/', (req, res) => {
     res.send('Rota principal');
 });
 
-routes.get('/characters', CharactersController.index);
-routes.get('/characters/:id', CharactersController.show);
+routes.get('/personagens', CharactersController.index);
+routes.get('/personagens/:id', CharactersController.show);
 
 
 export default routes;
