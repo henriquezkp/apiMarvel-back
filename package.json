@@ -5,7 +5,8 @@
     "license": "MIT",
     "scripts": {
         "dev": "nodemon src/index.js",
-        "build": "sucrase ./src -d ./dist --transforms imports"
+        "build": "sucrase ./src -d ./dist --transforms imports",
+        "start": "node -r dotenv/config ./dist/index.js"
     },
     "devDependencies": {
         "nodemon": "^2.0.6",
