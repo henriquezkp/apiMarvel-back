@@ -9,7 +9,9 @@ class CharactersController {
 
     async index(req, res) {
         let { pagina, registros } = req.query;
-
+        if (!registros) {
+            registros = 100;
+        }
         let offset = 0;
 
         if (pagina && pagina > 1) {
